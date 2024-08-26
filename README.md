@@ -1,4 +1,4 @@
-
+obs: o codigo está presente na main.c
 Calculadora implementada em C, que tem as seguintes conversões:
 
 1 - De base 10 para:
