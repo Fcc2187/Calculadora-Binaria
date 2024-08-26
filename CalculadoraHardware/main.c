@@ -55,44 +55,42 @@ void octal(int x){
 
 
 void base_16(int x) {
-  char hexadecimal[32];
-  int i = 0;
-  int valorConvertido = x;
+    char hexadecimal[32];
+    int i = 0;
+    unsigned int valorConvertido; // Usamos unsigned int para representar o número corretamente
 
-  if (x == 0) {
-      printf("\nNúmero em Hexadecimal: 0\n");
-      return;
-  }
+    if (x == 0) {
+        printf("\nNúmero em Hexadecimal: 0\n");
+        return;
+    }
 
-  if (x < 0) {
-      valorConvertido = -x; // Trabalha com o valor absoluto para conversão
-  }
+    // Trata números negativos com complemento a 2
+    valorConvertido = (x < 0) ? ((unsigned int)x) : (unsigned int)x;
 
-  while (valorConvertido > 0) {
-      int resto = valorConvertido % 16;
-      if (resto < 10) {
-          hexadecimal[i] = resto + '0'; 
-      } else {
-          hexadecimal[i] = resto - 10 + 'A';
-      }
-      valorConvertido /= 16;
-      i++;
-  }
+    while (valorConvertido > 0) {
+        int resto = valorConvertido % 16;
+        if (resto < 10) {
+            hexadecimal[i] = resto + '0'; 
+        } else {
+            hexadecimal[i] = resto - 10 + 'A';
+        }
+        valorConvertido /= 16;
+        i++;
+    }
 
-  if (x < 0) {
-      printf("\nNúmero em Hexadecimal: -");
-  } else {
-      printf("\nNúmero em Hexadecimal: ");
-  }
+    if (x < 0) {
+        printf("\nNúmero em Hexadecimal: -");
+    } else {
+        printf("\nNúmero em Hexadecimal: ");
+    }
 
-  for (int j = i - 1; j >= 0; j--) {
-      printf("%c", hexadecimal[j]);
-  }
-  printf("\n");
+
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%c", hexadecimal[j]);
+    }
+    printf("\n");
 }
 
 int main() {
-  int numero = 100;
-  base_16(numero);
   return 0;
 }
