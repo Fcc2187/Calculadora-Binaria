@@ -22,14 +22,13 @@ void binario(int x){
     printf("%d", binario[j]);
   }
   printf("\n");
-  return 0;
 }
 
 void octal(int x){
   //deixando 32 como padrão oara todas operações
   int octal[32]; 
   int i = 0;
-  
+
   if(x<=7){
     if(x<0){
       printf("Número em octal: \n-%d\n",x);
@@ -52,12 +51,48 @@ void octal(int x){
     printf("%d", octal[j]);
   }
   printf("\n");
-  return 0;
 }
 
 
+void base_16(int x) {
+  char hexadecimal[32];
+  int i = 0;
+  int valorConvertido = x;
 
-int main(void){
-  
+  if (x == 0) {
+      printf("\nNúmero em Hexadecimal: 0\n");
+      return;
+  }
+
+  if (x < 0) {
+      valorConvertido = -x; // Trabalha com o valor absoluto para conversão
+  }
+
+  while (valorConvertido > 0) {
+      int resto = valorConvertido % 16;
+      if (resto < 10) {
+          hexadecimal[i] = resto + '0'; 
+      } else {
+          hexadecimal[i] = resto - 10 + 'A';
+      }
+      valorConvertido /= 16;
+      i++;
+  }
+
+  if (x < 0) {
+      printf("\nNúmero em Hexadecimal: -");
+  } else {
+      printf("\nNúmero em Hexadecimal: ");
+  }
+
+  for (int j = i - 1; j >= 0; j--) {
+      printf("%c", hexadecimal[j]);
+  }
+  printf("\n");
+}
+
+int main() {
+  int numero = 100;
+  base_16(numero);
   return 0;
 }
