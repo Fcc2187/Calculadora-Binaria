@@ -91,6 +91,51 @@ void base_16(int x) {
     printf("\n");
 }
 
+void BCD(int x) {
+    // Declara um array para armazenar os dígitos em BCD
+    int BCD[32 * 4] = {0};
+    // Array para armazenar os dígitos decimais individuais
+    int algarismos[32] = {0};
+    int i = 0;
+    int o = 0; 
+
+    if (x == 0) {
+        printf("\nNúmero em BCD: 0000\n");
+        return;
+    }
+    while (x != 0) {
+        algarismos[o] = x % 10; 
+        x = x / 10;            
+        o++;
+    }
+
+   
+    for (int h = o - 1; h >= 0; h--) {
+        int n = algarismos[h];
+        for (int k = 3; k >= 0; k--) {
+            BCD[i] = (n >> k) & 1;
+            i++;
+        }
+    }
+  int r=0;
+    printf("\nNúmero em BCD: ");
+    for (int j = 0; j < i; j++) {
+        printf("%d", BCD[j]);
+        r++;
+        if (r == 4) { 
+            printf(" ");
+            r = 0; 
+        }
+    }
+    printf("\n");
+}
 int main() {
+  int numero;
+  printf("Digite um número inteiro: ");
+  scanf("%d",&numero);
+  binario(numero);
+  octal(numero);
+  base_16(numero);
+  BCD(numero);
   return 0;
 }
