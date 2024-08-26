@@ -25,6 +25,35 @@ void binario(int x){
   return 0;
 }
 
+void octal(int x){
+  //deixando 32 como padrão oara todas operações
+  int octal[32]; 
+  int i = 0;
+  
+  if(x<=7){
+    if(x<0){
+      printf("Número em octal: \n-%d\n",x);
+    }
+    printf("\nNúmero em octal: %d \n", x);
+  }
+  //calculo do numero em octal 
+  while (x > 8) {
+    octal[i] = x % 8; 
+    x = x / 8;     
+    i++;
+  }
+  if(x<0){
+    printf("\nNúmero em octal: -");
+  }
+  else{
+    printf("\nNúmero em octal: ");
+  }
+  for (int j = i - 1; j >= 0; j--) {
+    printf("%d", octal[j]);
+  }
+  printf("\n");
+  return 0;
+}
 
 
 
