@@ -128,6 +128,20 @@ void BCD(int x) {
     }
     printf("\n");
 }
+void complementoa2(int x) {
+  unsigned short int resultado;
+  if (x >= 0) {
+    resultado = x;
+  } else {
+    resultado = (1 << 16) + x;
+  }
+
+  printf("\nNúmero em complemento a 2 (16 bits): ");
+  for (int i = 15; i >= 0; i--) {
+    printf("%d", (resultado >> i) & 1);
+  }
+  printf("\n");
+}
 
 void transformarfloat(float valor) {
     //biblioteca importada para garantir que a largura seja exatamente de 32 bits, obedecendo os requisitos
@@ -176,6 +190,7 @@ else{
   octal(numero);
   base_16(numero);
   BCD(numero);
+  complementoa2(numero);
   transformarfloat(numero);
 }
 }
