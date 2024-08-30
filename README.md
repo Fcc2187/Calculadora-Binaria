@@ -12,8 +12,8 @@ d) código BCD;
 3 - Converter real para float e double, mostrando os respectivos bits de sinal , expoente, expoente com viés e fração;
 <br>
 <br>
-Commit final da primeira questão: dia 26/08 às 18:00 aproximadamente
+Commit final da primeira questão: dia 30/08 às 16:20 aproximadamente(fiz no dia 26/08 mas depois descobri erros na função de octal)
 <br>
-Commit final da segunda questão: dia 30/08 às 16:30 aproximadamente
+Commit final da segunda questão: dia 30/08 às 16:30 aproximadamente(tinha erros nela)
 <br>
 Commit final da terceira questão: dia 30/08 às 16:20 aproximadamente
