@@ -1,4 +1,6 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
 
 void binario(int x){
   //deixando 32 como padrão oara todas operações
@@ -28,12 +30,10 @@ void octal(int x){
   //deixando 32 como padrão oara todas operações
   int octal[32]; 
   int i = 0;
-
-  if(x<=7){
-    if(x<0){
-      printf("Número em octal: \n-%d\n",x);
-    }
-    printf("\nNúmero em octal: %d \n", x);
+  int negativo = 0;
+  if(x<0){
+    negativo = 1;
+    x = -x;
   }
   //calculo do numero em octal 
   while (x > 8) {
@@ -41,20 +41,19 @@ void octal(int x){
     x = x / 8;     
     i++;
   }
-  if(x<0){
-    printf("\nNúmero em octal: -");
+   octal[i] = x;
+   printf("\nNúmero em octal: ");
+  if(negativo == 1){
+    printf("-");
   }
-  else{
-    printf("\nNúmero em octal: ");
-  }
-  for (int j = i - 1; j >= 0; j--) {
+  for (int j = i; j >= 0; j--) {
     printf("%d", octal[j]);
   }
   printf("\n");
 }
 
 
-void base_16(int x) {
+void base_16(int x){
     char hexadecimal[32];
     int i = 0;
     unsigned int valorConvertido; // Usamos unsigned int para representar o número corretamente
@@ -109,7 +108,7 @@ void BCD(int x) {
         o++;
     }
 
-   
+
     for (int h = o - 1; h >= 0; h--) {
         int n = algarismos[h];
         for (int k = 3; k >= 0; k--) {
@@ -117,7 +116,7 @@ void BCD(int x) {
             i++;
         }
     }
-  int r=0;
+    int r=0;
     printf("\nNúmero em BCD: ");
     for (int j = 0; j < i; j++) {
         printf("%d", BCD[j]);
@@ -129,13 +128,56 @@ void BCD(int x) {
     }
     printf("\n");
 }
+
+void transformarfloat(float valor) {
+    //biblioteca importada para garantir que a largura seja exatamente de 32 bits, obedecendo os requisitos
+    uint32_t representacao;
+    memcpy(&representacao, &valor, sizeof(representacao));
+
+    // Extrair sinal, expoente e fração (mantissa)
+    uint32_t sinal_float = representacao >> 31;
+    uint32_t expoente_com_vies = (representacao >> 23) & 0xFF;
+    uint32_t fracao = representacao & 0x7FFFFF;
+
+    printf("\nNúmero em float (32 bits):\n");
+    printf("Sinal: %u\n", sinal_float);
+    printf("Expoente (com viés): %u\n", expoente_com_vies);
+    printf("Fração (mantissa): %u\n", fracao);
+
+    printf("\nBits em IEEE 754:\n");
+    printf("%u ", sinal_float);
+
+    // Mostrar os bits do expoente
+    for (int j = 0; j < 8; j++) {
+        printf("%u", (expoente_com_vies >> (7 - j)) & 1);
+    }
+    printf(" ");
+
+    // Mostrar os bits da fração (mantissa)
+    for (int k = 0; k < 23; k++) {
+        printf("%u", (fracao >> (22 - k)) & 1);
+    }
+    printf("\n");
+}
+
 int main() {
   int numero;
+  int choice;
+while(1){
+  printf("\nEscolha uma opção:\n0: sair\n1: calcular numero\n");
+  scanf("%d", &choice);
+  if(choice == 0){
+    break;
+  }
+else{
   printf("Digite um número inteiro: ");
   scanf("%d",&numero);
   binario(numero);
   octal(numero);
   base_16(numero);
   BCD(numero);
+  transformarfloat(numero);
+}
+}
   return 0;
 }
