@@ -8,8 +8,9 @@ c) base 16;
 d) código BCD;
 
 2 - De base 10 para base com sinal com 16 bits, (complemento a 2);
-
+<br
 3 - Converter real para float e double, mostrando os respectivos bits de sinal , expoente, expoente com viés e fração;
+<br>
 <br>
 Commit final da primeira questão: dia 26/08 às 18:00 aproximadamente
 <br>
